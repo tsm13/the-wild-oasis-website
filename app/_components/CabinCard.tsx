@@ -1,9 +1,9 @@
-import { Cabin } from "@/types/collection";
+import { ICabin } from "@/types/collection";
 import { UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
 
-function CabinCard({ cabin }: { cabin: Cabin }) {
+function CabinCard({ cabin }: { cabin: ICabin }) {
   const { id, name, maxCapacity, regularPrice, discount, image } = cabin;
 
   return (
