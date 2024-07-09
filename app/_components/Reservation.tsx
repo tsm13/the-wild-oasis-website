@@ -1,4 +1,3 @@
-import { ICabin } from "@/types/collection";
 import { getBookedDatesByCabinId, getSettings } from "../_lib/data-service";
 import DateSelector from "./DateSelector";
 import ReservationForm from "./ReservationForm";

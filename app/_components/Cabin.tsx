@@ -2,7 +2,7 @@ import { UsersIcon, MapPinIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import React from "react";
 import TextExpander from "./TextExpander";
-import { ICabin } from "@/types/collection";
+import { ICabin } from "@/_types/collection";
 
 export default function Cabin({ cabin }: { cabin: ICabin }) {
   const { name, maxCapacity, image, description } = cabin;

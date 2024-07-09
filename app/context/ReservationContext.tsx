@@ -2,11 +2,6 @@
 
 import { createContext, use, useState } from "react";
 
-type Reservation = {
-  from: Date | undefined;
-  to: Date | undefined;
-};
-
 type ReservationContext = {
   range: Reservation;
   setRange: (range: Reservation) => void;
