@@ -1,9 +1,8 @@
-import { ICabin } from "@/_types/collection";
 import { UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
 
-function CabinCard({ cabin }: { cabin: ICabin }) {
+export default function CabinCard({ cabin }: { cabin: Cabin }) {
   const { id, name, maxCapacity, regularPrice, discount, image } = cabin;
 
   return (
@@ -59,5 +58,3 @@ function CabinCard({ cabin }: { cabin: ICabin }) {
     </div>
   );
 }
-
-export default CabinCard;

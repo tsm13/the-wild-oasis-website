@@ -5,7 +5,7 @@ import SubmitButton from "./SubmitButton";
 
 interface Props {
   children: React.ReactNode;
-  guest: IGuest;
+  guest: Guest;
 }
 
 export default function UpdateProfileForm({ children, guest }: Props) {

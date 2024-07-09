@@ -4,7 +4,7 @@ import ReservationForm from "./ReservationForm";
 import { auth } from "../_lib/auth";
 import LoginMessage from "./LoginMessage";
 
-export default async function Reservation({ cabin }: { cabin: ICabin }) {
+export default async function Reservation({ cabin }: { cabin: Cabin }) {
   const [settings, bookedDates] = await Promise.all([
     getSettings(),
     getBookedDatesByCabinId(cabin.id),

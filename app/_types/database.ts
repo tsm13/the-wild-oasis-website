@@ -1,8 +1,4 @@
-// export type Cabin = Database["public"]["Tables"]["cabins"]["Row"];
-
-// REVIEW: all interfaces...
-
-interface ICabin {
+interface Cabin {
   discount: number;
   id: number;
   image: string;
@@ -12,8 +8,8 @@ interface ICabin {
   description: string;
 }
 
-interface IGuest {
-  countryFlag?: string;
+interface Guest {
+  countryFlag: string;
   email: string;
   fullName: string;
   id: number;
@@ -21,29 +17,7 @@ interface IGuest {
   nationality: string | null;
 }
 
-interface IBooking {
-  cabinId: number;
-  cabinPrice: number;
-  createdAt: string;
-  endDate: string;
-  extrasPrice: number | null;
-  guestId: number;
-  hasBreakfast: boolean;
-  id: number;
-  isPaid: boolean;
-  numGuests: number;
-  numNights: number;
-  observations: string | null;
-  startDate: string;
-  status: string;
-  totalPrice: number;
-  cabins: {
-    name: string;
-    image: string;
-  };
-}
-
-interface IBookingDB {
+interface Booking {
   cabinId: number;
   cabinPrice: number;
   createdAt: string;
@@ -61,7 +35,29 @@ interface IBookingDB {
   totalPrice: number;
 }
 
-interface ISetting {
+interface BookingDB {
+  cabinId: number;
+  createdAt: string;
+  endDate: string;
+  guestId: number;
+  id: number;
+  numGuests: number;
+  numNights: number;
+  startDate: string;
+  totalPrice: number;
+  cabins: {
+    name: string;
+    image: string;
+  };
+}
+// cabinPrice: number;
+//extrasPrice: number | null;
+// hasBreakfast: boolean;
+//isPaid: boolean;
+// observations: string | null;
+// status: string;
+
+interface Setting {
   breakfastPrice: number;
   createdAt: string;
   id: number;

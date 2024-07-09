@@ -10,7 +10,7 @@ export const formatDistanceFromNow = (dateStr: string) =>
   }).replace("about ", "");
 
 interface Props {
-  booking: IBooking;
+  booking: BookingDB;
   onDelete: (bookingId: number) => void;
 }
 

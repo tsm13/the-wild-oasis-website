@@ -2,37 +2,19 @@ import { eachDayOfInterval } from "date-fns";
 import { supabase } from "./supabase-client";
 import { notFound } from "next/navigation";
 
-/////////////
-// GET
-export async function getCabin(cabinId: string) {
+export async function getCabin(cabinId: number) {
   const { data, error } = await supabase
     .from("cabins")
     .select("*")
     .eq("id", cabinId)
     .single();
 
-  // await new Promise((res) => setTimeout(res, 5000));
-
   if (error) {
     console.error(error);
     notFound();
   }
 
-  return data;
-}
-
-export async function getCabinPrice(id) {
-  const { data, error } = await supabase
-    .from("cabins")
-    .select("regularPrice, discount")
-    .eq("id", id)
-    .single();
-
-  if (error) {
-    console.error(error);
-  }
-
-  return data;
+  return data as Cabin;
 }
 
 export const getCabins = async function () {
@@ -41,47 +23,37 @@ export const getCabins = async function () {
     .select("id, name, maxCapacity, regularPrice, discount, image")
     .order("name");
 
-  // await new Promise((res) => setTimeout(res, 2000));
+  if (error) throw new Error("Cabins could not be loaded");
 
-  if (error) {
-    console.error(error);
-    throw new Error("Cabins could not be loaded");
-  }
-
-  return data;
+  return data as Cabin[];
 };
 
-// Guests are uniquely identified by their email address
 export async function getGuest(email: string) {
-  const { data, error } = await supabase
+  const { data } = await supabase
     .from("guests")
     .select("*")
     .eq("email", email)
     .single();
 
-  // No error here! We handle the possibility of no guest in the sign in callback
+  // Error handling is done in the sign-in callback
   return data;
 }
 
-export async function getBooking(bookingId: string) {
-  const { data, error, count } = await supabase
+export async function getBooking(bookingId: number) {
+  const { data, error } = await supabase
     .from("bookings")
     .select("*")
     .eq("id", bookingId)
     .single();
 
-  if (error) {
-    console.error(error);
-    throw new Error("Booking could not get loaded");
-  }
+  if (error) throw new Error("Booking could not get loaded");
 
-  return data as IBookingDB;
+  return data as Booking;
 }
 
-export async function getBookings(guestId) {
+export async function getBookings(guestId: number) {
   const { data, error } = await supabase
     .from("bookings")
-    // We actually also need data on the cabins as well. But let's ONLY take the data that we actually need, in order to reduce downloaded data.
     .select(
       "id, createdAt, startDate, endDate, numNights, numGuests, totalPrice, guestId, cabinId, cabins(name, image)"
     )
@@ -93,7 +65,7 @@ export async function getBookings(guestId) {
     throw new Error("Bookings could not get loaded");
   }
 
-  return data as IBooking[];
+  return data as BookingDB[];
 }
 
 export async function getBookedDatesByCabinId(cabinId: number) {
@@ -107,8 +79,6 @@ export async function getBookedDatesByCabinId(cabinId: number) {
     .select("*")
     .eq("cabinId", cabinId)
     .or(`startDate.gte.${today},status.eq.checked-in`);
-
-  // await new Promise((res) => setTimeout(res, 3000));
 
   if (error) {
     console.error(error);
@@ -131,12 +101,9 @@ export async function getBookedDatesByCabinId(cabinId: number) {
 export async function getSettings() {
   const { data, error } = await supabase.from("settings").select("*").single();
 
-  if (error) {
-    console.error(error);
-    throw new Error("Settings could not be loaded");
-  }
+  if (error) throw new Error("Settings could not be loaded");
 
-  return data;
+  return data as Setting;
 }
 
 export async function getCountries() {
@@ -151,16 +118,10 @@ export async function getCountries() {
   }
 }
 
-/////////////
 // CREATE
 
-export async function createGuest(newGuest) {
+export async function createGuest(newGuest: Guest) {
   const { data, error } = await supabase.from("guests").insert([newGuest]);
 
-  if (error) {
-    console.error(error);
-    throw new Error("Guest could not be created");
-  }
-
-  return data;
+  if (error) throw new Error("Guest could not be created");
 }

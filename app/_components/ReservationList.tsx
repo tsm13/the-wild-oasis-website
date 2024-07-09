@@ -7,7 +7,7 @@ import ReservationCard from "./ReservationCard";
 export default function ReservationList({
   bookings,
 }: {
-  bookings: IBooking[];
+  bookings: BookingDB[];
 }) {
   const [optimisticBookings, optimisticDelete] = useOptimistic(
     bookings,

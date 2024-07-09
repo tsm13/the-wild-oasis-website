@@ -3,7 +3,7 @@ import "@/app/_styles/globals.css";
 import { Josefin_Sans } from "next/font/google";
 
 import Header from "./_components/Header";
-import { ReservationProvider } from "./context/ReservationContext";
+import { ReservationProvider } from "./_context/ReservationContext";
 
 const josefin = Josefin_Sans({
   subsets: ["latin"],

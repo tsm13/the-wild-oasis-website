@@ -8,7 +8,7 @@ import {
 } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-import { useReservation } from "../context/ReservationContext";
+import { useReservation } from "../_context/ReservationContext";
 
 function isAlreadyBooked(range: Reservation, datesArr: any) {
   return (
@@ -22,8 +22,8 @@ function isAlreadyBooked(range: Reservation, datesArr: any) {
 
 interface Props {
   bookedDates: Date[];
-  cabin: ICabin;
-  settings: ISetting;
+  cabin: Cabin;
+  settings: Setting;
 }
 
 function DateSelector({ bookedDates, cabin, settings }: Props) {

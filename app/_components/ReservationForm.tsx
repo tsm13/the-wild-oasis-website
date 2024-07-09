@@ -1,12 +1,12 @@
 "use client";
 
 import { differenceInDays } from "date-fns";
-import { useReservation } from "../context/ReservationContext";
+import { useReservation } from "../_context/ReservationContext";
 import { User } from "next-auth";
 import { createBooking } from "../_lib/actions";
 import SubmitButton from "./SubmitButton";
 
-function ReservationForm({ cabin, user }: { cabin: ICabin; user: User }) {
+function ReservationForm({ cabin, user }: { cabin: Cabin; user: User }) {
   const { range, resetRange } = useReservation();
   const { maxCapacity, regularPrice, discount, id } = cabin;
 
