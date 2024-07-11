@@ -7,13 +7,13 @@ interface Props {
   className: string;
 }
 
-interface ICountry {
+interface Country {
   name: string;
   flag: string;
 }
 
 async function SelectCountry({ defaultCountry, name, id, className }: Props) {
-  const countries: ICountry[] = await getCountries();
+  const countries: Country[] = await getCountries();
   const flag =
     countries.find((country) => country.name === defaultCountry)?.flag ?? "";
 

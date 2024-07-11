@@ -118,7 +118,9 @@ export async function getCountries() {
   }
 }
 
+///////////
 // CREATE
+//////////
 
 export async function createGuest(newGuest: Guest) {
   const { data, error } = await supabase.from("guests").insert([newGuest]);
