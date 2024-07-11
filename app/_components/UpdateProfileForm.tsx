@@ -1,17 +1,17 @@
 "use client";
 
 import { updateGuest } from "../_lib/actions";
+import { IGuest } from "../_types/database";
+
 import SubmitButton from "./SubmitButton";
 
 interface Props {
   children: React.ReactNode;
-  guest: Guest;
+  guest: IGuest;
 }
 
 export default function UpdateProfileForm({ children, guest }: Props) {
   const { fullName, email, nationalID, countryFlag } = guest;
-
-
 
   return (
     <form

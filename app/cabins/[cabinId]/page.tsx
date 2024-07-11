@@ -9,7 +9,7 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const cabin = await getCabin(params.cabinId);
+  const cabin = await getCabin(Number(params.cabinId));
   if (!cabin) return null;
   return { title: `Cabin ${cabin.name}` };
 }
@@ -21,7 +21,7 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: Props) {
-  const cabin = await getCabin(params.cabinId);
+  const cabin = await getCabin(Number(params.cabinId));
   if (!cabin) return null;
 
   return (

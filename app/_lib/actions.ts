@@ -2,13 +2,14 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { IBookingAction } from "../_types/database";
 import { auth, signIn, signOut } from "./auth";
 import { getBookings } from "./data-service";
 import { supabase } from "./supabase-client";
 
 // Auth helper
 async function AuthorizeUserOperation(bookingId?: number) {
-  const session = (await auth()) as unknown as ISession;
+  const session = await auth();
   if (!session || !session.user)
     throw new Error("You must be logged in to perform this action");
 
@@ -86,14 +87,17 @@ export async function updateBooking(formData: FormData) {
   redirect("/account/reservations");
 }
 
-export async function createBooking(bookingData, formData) {
+export async function createBooking(
+  bookingData: IBookingAction,
+  formData: FormData
+) {
   const session = await AuthorizeUserOperation();
 
   const newBooking = {
     ...bookingData,
     guestId: session.user.guestId,
     numGuests: Number(formData.get("numGuests")),
-    observations: formData.get("observations").slice(0, 1000),
+    observations: formData.get("observations")?.slice(0, 1000),
     extrasPrice: 0,
     totalPrice: bookingData.cabinPrice,
     status: "unconfirmed",

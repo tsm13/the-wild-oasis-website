@@ -10,12 +10,6 @@ const nextConfig = {
       },
     ],
   },
-  // REVIEW: REMOVE DIS!!!!!!!!!!!!!!!!!!!!!
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  // REVIEW: and also dis!!11!
-  // output: "export",
 };
 
 export default nextConfig;

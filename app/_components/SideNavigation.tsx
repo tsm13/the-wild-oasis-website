@@ -5,9 +5,9 @@ import {
   HomeIcon,
   UserIcon,
 } from "@heroicons/react/24/solid";
-import SignOutButton from "./SignOutButton";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import SignOutButton from "./SignOutButton";
 
 const navLinks = [
   {

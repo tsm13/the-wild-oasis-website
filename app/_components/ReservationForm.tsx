@@ -1,15 +1,17 @@
 "use client";
 
 import { differenceInDays } from "date-fns";
-import { useReservation } from "../_context/ReservationContext";
 import { User } from "next-auth";
+import { useReservation } from "../_context/ReservationContext";
 import { createBooking } from "../_lib/actions";
+import { ICabin } from "../_types/database";
 import SubmitButton from "./SubmitButton";
 
-function ReservationForm({ cabin, user }: { cabin: Cabin; user: User }) {
+function ReservationForm({ cabin, user }: { cabin: ICabin; user: User }) {
   const { range, resetRange } = useReservation();
   const { maxCapacity, regularPrice, discount, id } = cabin;
 
+  if (!range.from || !range.to) return;
   const { from: startDate, to: endDate } = range;
 
   const numNights = differenceInDays(endDate, startDate);
@@ -22,12 +24,12 @@ function ReservationForm({ cabin, user }: { cabin: Cabin; user: User }) {
     cabinPrice,
     cabinId: id,
   };
-
-  const createBookingWithData = createBooking.bind(null, bookingData);
+  // REVIEW:
+  //const createBookingWithData = createBooking.bind(null, bookingData);
 
   const handleSubmit = async (formData: FormData) => {
-    //await createBooking.call(null, bookingData, formData);
-    await createBookingWithData(formData);
+    await createBooking.call(null, bookingData, formData);
+    // await createBookingWithData(formData);
     resetRange();
   };
 
@@ -41,8 +43,8 @@ function ReservationForm({ cabin, user }: { cabin: Cabin; user: User }) {
             // Needed to display google profile images
             referrerPolicy="no-referrer"
             className="h-8 rounded-full"
-            src={user.image}
-            alt={user.name}
+            src={user.image!}
+            alt={user.name!}
           />
           <p>{user.name}</p>
         </div>

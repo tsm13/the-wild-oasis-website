@@ -1,4 +1,4 @@
-interface Cabin {
+export interface ICabin {
   discount: number;
   id: number;
   image: string;
@@ -8,34 +8,7 @@ interface Cabin {
   description: string;
 }
 
-interface Guest {
-  countryFlag: string;
-  email: string;
-  fullName: string;
-  id: number;
-  nationalID: string | null;
-  nationality: string | null;
-}
-
-interface Booking {
-  cabinId: number;
-  cabinPrice: number;
-  createdAt: string;
-  endDate: string;
-  extrasPrice: number;
-  guestId: number;
-  hasBreakfast: boolean;
-  id: number;
-  isPaid: boolean;
-  numGuests: number;
-  numNights: number;
-  observations: string;
-  startDate: string;
-  status: "unconfirmed" | "checked-in" | "checked-out";
-  totalPrice: number;
-}
-
-interface BookingDB {
+export interface IBooking {
   cabinId: number;
   createdAt: string;
   endDate: string;
@@ -50,14 +23,26 @@ interface BookingDB {
     image: string;
   };
 }
-// cabinPrice: number;
-//extrasPrice: number | null;
-// hasBreakfast: boolean;
-//isPaid: boolean;
-// observations: string | null;
-// status: string;
 
-interface Setting {
+export interface IBookingAction extends IBooking {
+  cabinPrice: number;
+  extrasPrice: number;
+  hasBreakfast: boolean;
+  isPaid: boolean;
+  observations: string;
+  status: "unconfirmed" | "checked-in" | "checked-out";
+}
+
+export interface IGuest {
+  countryFlag: string;
+  email: string;
+  fullName: string;
+  id: number;
+  nationalID?: string;
+  nationality?: string;
+}
+
+export interface ISetting {
   breakfastPrice: number;
   createdAt: string;
   id: number;

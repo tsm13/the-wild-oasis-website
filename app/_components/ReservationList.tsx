@@ -2,12 +2,13 @@
 
 import { useOptimistic } from "react";
 import { deleteBooking } from "../_lib/actions";
+import { IBooking } from "../_types/database";
 import ReservationCard from "./ReservationCard";
 
 export default function ReservationList({
   bookings,
 }: {
-  bookings: BookingDB[];
+  bookings: IBooking[];
 }) {
   const [optimisticBookings, optimisticDelete] = useOptimistic(
     bookings,

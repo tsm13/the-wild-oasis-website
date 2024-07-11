@@ -1,6 +1,7 @@
 import { eachDayOfInterval } from "date-fns";
-import { supabase } from "./supabase-client";
 import { notFound } from "next/navigation";
+import { IBooking, ICabin, ISetting } from "../_types/database";
+import { supabase } from "./supabase-client";
 
 export async function getCabin(cabinId: number) {
   const { data, error } = await supabase
@@ -14,7 +15,7 @@ export async function getCabin(cabinId: number) {
     notFound();
   }
 
-  return data as Cabin;
+  return data as ICabin;
 }
 
 export const getCabins = async function () {
@@ -25,7 +26,7 @@ export const getCabins = async function () {
 
   if (error) throw new Error("Cabins could not be loaded");
 
-  return data as Cabin[];
+  return data as ICabin[];
 };
 
 export async function getGuest(email: string) {
@@ -48,7 +49,7 @@ export async function getBooking(bookingId: number) {
 
   if (error) throw new Error("Booking could not get loaded");
 
-  return data as Booking;
+  return data as IBooking;
 }
 
 export async function getBookings(guestId: number) {
@@ -65,7 +66,7 @@ export async function getBookings(guestId: number) {
     throw new Error("Bookings could not get loaded");
   }
 
-  return data as BookingDB[];
+  return data as IBooking[];
 }
 
 export async function getBookedDatesByCabinId(cabinId: number) {
@@ -103,7 +104,7 @@ export async function getSettings() {
 
   if (error) throw new Error("Settings could not be loaded");
 
-  return data as Setting;
+  return data as ISetting;
 }
 
 export async function getCountries() {
@@ -122,8 +123,11 @@ export async function getCountries() {
 // CREATE
 //////////
 
-export async function createGuest(newGuest: Guest) {
-  const { data, error } = await supabase.from("guests").insert([newGuest]);
+export async function createGuest(newGuest: {
+  email: string;
+  fullName: string;
+}) {
+  const { error } = await supabase.from("guests").insert([newGuest]);
 
   if (error) throw new Error("Guest could not be created");
 }

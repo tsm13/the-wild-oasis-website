@@ -1,8 +1,9 @@
 import { UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
+import { ICabin } from "../_types/database";
 
-export default function CabinCard({ cabin }: { cabin: Cabin }) {
+export default function CabinCard({ cabin }: { cabin: ICabin }) {
   const { id, name, maxCapacity, regularPrice, discount, image } = cabin;
 
   return (

@@ -1,22 +1,23 @@
 "use client";
 
 import { createContext, use, useState } from "react";
+import { IReservation } from "../_types/external";
 
 type ReservationContext = {
-  range: Reservation;
-  setRange: (range: Reservation) => void;
+  range: IReservation;
+  setRange: (range: IReservation) => void;
   resetRange: () => void;
 };
 
 const ReservationContext = createContext<ReservationContext>(null!);
 
-const initialState: Reservation = {
+const initialState: IReservation = {
   from: undefined,
   to: undefined,
 };
 
 function ReservationProvider({ children }: { children: React.ReactNode }) {
-  const [range, setRange] = useState<Reservation>(initialState);
+  const [range, setRange] = useState<IReservation>(initialState);
   const resetRange = () => {
     setRange(initialState);
   };
