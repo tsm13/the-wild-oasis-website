@@ -10,7 +10,7 @@ Aplicação web fullstack feita com Next.js e supabase. Projeto final do curso [
 
 ## Live Demo
 
-[Deployed here](https://the-wild-oasis-tsm13.vercel.app)
+[Available here](https://the-wild-oasis-tsm13.vercel.app)
 
 ## Features
 
@@ -32,7 +32,7 @@ Aplicação web fullstack feita com Next.js e supabase. Projeto final do curso [
 - TailwindCSS
 - Typescript
 
-### Key concepts learned through this project:
+## Key concepts learned through this project:
 
 - Server Side Rendering with React: How Server Components differ from Client Components, and how to use Server Actions
 - The differences between Static and Dynamic rendering
