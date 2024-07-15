@@ -4,20 +4,21 @@ import { differenceInDays } from "date-fns";
 import { User } from "next-auth";
 import { useReservation } from "../_context/ReservationContext";
 import { createBooking } from "../_lib/actions";
-import { ICabin } from "../_types/database";
+import { IBooking, IBookingAction, ICabin } from "../_types/database";
 import SubmitButton from "./SubmitButton";
 
 function ReservationForm({ cabin, user }: { cabin: ICabin; user: User }) {
   const { range, resetRange } = useReservation();
   const { maxCapacity, regularPrice, discount, id } = cabin;
 
+  // REVIEW:
   if (!range.from || !range.to) return;
   const { from: startDate, to: endDate } = range;
 
   const numNights = differenceInDays(endDate, startDate);
   const cabinPrice = numNights * (regularPrice - discount);
 
-  const bookingData = {
+  const bookingData: Partial<IBookingAction> = {
     startDate,
     endDate,
     numNights,
@@ -29,7 +30,6 @@ function ReservationForm({ cabin, user }: { cabin: ICabin; user: User }) {
 
   const handleSubmit = async (formData: FormData) => {
     await createBooking.call(null, bookingData, formData);
-    // await createBookingWithData(formData);
     resetRange();
   };
 

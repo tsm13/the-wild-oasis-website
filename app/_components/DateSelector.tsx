@@ -35,12 +35,17 @@ function DateSelector({ bookedDates, cabin, settings }: Props) {
   const { range, setRange, resetRange } = useReservation();
 
   // REVIEW:
-  const displayRange = isAlreadyBooked(range, bookedDates) ? {to: '', from: ''} : range;
+  const displayRange = isAlreadyBooked(range, bookedDates)
+    ? { from: undefined, to: undefined }
+    : range;
 
   const { regularPrice, discount } = cabin;
   const { minBookingLength, maxBookingLength } = settings;
 
-  const numNights = differenceInDays(displayRange.to, displayRange.from);
+  const numNights = differenceInDays(
+    displayRange.to as Date,
+    displayRange.from as Date
+  );
   const cabinPrice = numNights * (regularPrice - discount);
 
   return (

@@ -1,5 +1,6 @@
 import { User } from "next-auth";
 
+// auth lib
 declare module "next-auth" {
   interface Session {
     user: User & {
@@ -8,6 +9,7 @@ declare module "next-auth" {
   }
 }
 
+// date-fns lib
 export interface IReservation {
   from: Date | undefined;
   to: Date | undefined;

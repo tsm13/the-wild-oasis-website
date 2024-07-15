@@ -13,8 +13,10 @@ interface Props {
 
 export default async function Page({ params }: Props) {
   const bookingId = params.bookingId;
-  const { cabinId, numGuests, observations } = await getBooking(bookingId);
-  const { maxCapacity } = await getCabin(String(cabinId));
+  const { cabinId, numGuests, observations } = await getBooking(
+    Number(bookingId)
+  );
+  const { maxCapacity } = await getCabin(cabinId);
 
   return (
     <div>

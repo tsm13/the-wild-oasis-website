@@ -66,7 +66,7 @@ export async function getBookings(guestId: number) {
     throw new Error("Bookings could not get loaded");
   }
 
-  return data as IBooking[];
+  return data as unknown as IBooking[];
 }
 
 export async function getBookedDatesByCabinId(cabinId: number) {

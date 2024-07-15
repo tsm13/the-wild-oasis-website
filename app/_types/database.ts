@@ -11,13 +11,14 @@ export interface ICabin {
 export interface IBooking {
   cabinId: number;
   createdAt: string;
-  endDate: string;
+  endDate: Date;
   guestId: number;
   id: number;
   numGuests: number;
   numNights: number;
-  startDate: string;
+  startDate: Date;
   totalPrice: number;
+  observations: string;
   cabins: {
     name: string;
     image: string;
@@ -29,7 +30,6 @@ export interface IBookingAction extends IBooking {
   extrasPrice: number;
   hasBreakfast: boolean;
   isPaid: boolean;
-  observations: string;
   status: "unconfirmed" | "checked-in" | "checked-out";
 }
 

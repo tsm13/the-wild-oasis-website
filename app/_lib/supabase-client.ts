@@ -1,7 +1,6 @@
-import { Database } from "@/app/_types/supabase";
 import { createClient } from "@supabase/supabase-js";
 
-export const supabase = createClient<Database>(
+export const supabase = createClient(
   process.env.SUPABASE_URL as string,
   process.env.SUPABASE_KEY as string
 );

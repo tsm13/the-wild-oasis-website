@@ -10,8 +10,9 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const session = (await auth()) as unknown as ISession;
-  const bookings = await getBookings(session?.user?.guestId);
+  const session = await auth();
+  if (!session || !session.user) return;
+  const bookings = await getBookings(session.user.guestId);
 
   return (
     <div>

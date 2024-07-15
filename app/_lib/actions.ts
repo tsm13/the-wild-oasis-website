@@ -88,7 +88,7 @@ export async function updateBooking(formData: FormData) {
 }
 
 export async function createBooking(
-  bookingData: IBookingAction,
+  bookingData: Partial<IBookingAction>,
   formData: FormData
 ) {
   const session = await AuthorizeUserOperation();
