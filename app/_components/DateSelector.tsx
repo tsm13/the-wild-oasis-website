@@ -34,7 +34,6 @@ interface Props {
 function DateSelector({ bookedDates, cabin, settings }: Props) {
   const { range, setRange, resetRange } = useReservation();
 
-  // REVIEW:
   const displayRange = isAlreadyBooked(range, bookedDates)
     ? { from: undefined, to: undefined }
     : range;

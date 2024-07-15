@@ -11,7 +11,6 @@ function ReservationForm({ cabin, user }: { cabin: ICabin; user: User }) {
   const { range, resetRange } = useReservation();
   const { maxCapacity, regularPrice, discount, id } = cabin;
 
-  // REVIEW:
   if (!range.from || !range.to) return;
   const { from: startDate, to: endDate } = range;
 
@@ -25,8 +24,6 @@ function ReservationForm({ cabin, user }: { cabin: ICabin; user: User }) {
     cabinPrice,
     cabinId: id,
   };
-  // REVIEW:
-  //const createBookingWithData = createBooking.bind(null, bookingData);
 
   const handleSubmit = async (formData: FormData) => {
     await createBooking.call(null, bookingData, formData);
